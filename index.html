@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiet Author</title>
+  <style>
+    :root {
+      --aura: #5e6b77;
+      --surface: #f6f7f8;
+      --text-primary: #1f2a33;
+      --text-muted: #4a5560;
+      --accent: #2f4858;
+      --max-width: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 20%, rgba(94, 107, 119, 0.22), transparent 35%),
+                  radial-gradient(circle at 80% 10%, rgba(94, 107, 119, 0.18), transparent 30%),
+                  linear-gradient(to bottom, var(--aura), var(--surface) 38%);
+      color: var(--text-primary);
+      font-family: "Iowan Old Style", "Palatino", "Georgia", serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 64px;
+    }
+
+    header {
+      width: 100%;
+      max-width: var(--max-width);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 64px;
+      color: var(--text-muted);
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .brand {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 120ms ease;
+    }
+
+    nav a:focus-visible,
+    nav a:hover {
+      border-color: rgba(47, 72, 88, 0.35);
+    }
+
+    main {
+      width: 100%;
+      max-width: var(--max-width);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .lead {
+      margin-top: 40px;
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.4;
+      max-width: 16ch;
+      color: var(--text-primary);
+    }
+
+    .lead strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .note {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 36ch;
+      margin-top: 12px;
+    }
+
+    .below-fold {
+      margin-top: 120px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(47, 72, 88, 0.15);
+      width: 100%;
+      max-width: var(--max-width);
+      color: var(--text-muted);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      font-size: 15px;
+    }
+
+    .hint {
+      opacity: 0.75;
+      line-height: 1.6;
+    }
+
+    .whisper {
+      justify-self: end;
+      text-align: right;
+      max-width: 24ch;
+      opacity: 0.6;
+    }
+
+    footer {
+      margin-top: 60px;
+      width: 100%;
+      max-width: var(--max-width);
+      color: var(--text-muted);
+      font-size: 14px;
+      letter-spacing: 0.01em;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        margin-bottom: 48px;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      main {
+        gap: 32px;
+      }
+
+      .below-fold {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .whisper {
+        justify-self: start;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="Primary">
+    <div class="brand">Notes in Order</div>
+    <nav aria-label="Quiet navigation">
+      <a href="#work">Work</a>
+      <a href="#notes">Notes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-labelledby="thesis" id="top">
+      <h1 id="thesis" class="lead">Clarity is a system that earns trust in quiet increments.</h1>
+      <p class="note">I build calm structures: tools, protocols, and practices that stay legible as they scale. The aim is 
+      steadiness—explanations that hold, code that ages well, and decisions that read like they were meant to be.</p>
+    </section>
+
+    <section class="below-fold" aria-label="Faint outline of contents">
+      <div class="hint">Next pages open into measured chapters—signals, tools, and the work of keeping things coherent. They wait here without spectacle.</div>
+      <div class="whisper">Below, a few entries linger quietly: a resilient service spine, a narrative of decisions, a ledger of small, careful fixes.</div>
+    </section>
+  </main>
+
+  <footer>
+    <span id="work">Maker and maintainer of reliable systems.</span>
+    <span id="notes" style="margin-left: 18px;">Writing about practices that stay clear under pressure.</span>
+    <span id="contact" style="margin-left: 18px;">Available for thoughtful collaborations.</span>
+  </footer>
+</body>
+</html>
