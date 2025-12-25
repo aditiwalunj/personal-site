@@ -9,39 +9,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #e8ecf6;
-      --ink-soft: #cdd7f0;
-      --muted: #93a0c0;
-      --canvas: #0c0f17;
-      --panel: rgba(16, 20, 30, 0.88);
-      --panel-strong: rgba(20, 24, 36, 0.94);
-      --outline: rgba(255, 255, 255, 0.12);
-      --outline-strong: rgba(255, 255, 255, 0.16);
+      --ink: #0f1420;
+      --ink-soft: #1c2233;
+      --muted: #5a6070;
+      --canvas: #f7f5f2;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-strong: rgba(255, 255, 255, 0.98);
+      --outline: rgba(24, 30, 48, 0.12);
+      --outline-strong: rgba(24, 30, 48, 0.16);
       --accent: #d38ab5;
-      --accent-strong: #be70a0;
-      --accent-cool: #90a5ff;
-      --glow: 0 18px 48px rgba(0, 0, 0, 0.6);
-      --glow-soft: 0 12px 30px rgba(0, 0, 0, 0.36);
+      --accent-strong: #b56da0;
+      --accent-cool: #8fa8ff;
+      --glow: 0 18px 48px rgba(30, 34, 50, 0.18);
+      --glow-soft: 0 12px 30px rgba(30, 34, 50, 0.12);
       --radius: 16px;
       --max-width: 1140px;
       --ease: cubic-bezier(0.24, 0.08, 0.24, 1);
     }
 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --canvas: #0d1019;
+        --panel: rgba(19, 23, 35, 0.9);
+        --panel-strong: rgba(19, 23, 35, 0.96);
+        --outline: rgba(255, 255, 255, 0.06);
+        --outline-strong: rgba(255, 255, 255, 0.12);
+        --ink: #f2f4fb;
+        --ink-soft: #cfd6ef;
+        --muted: #9ca7c4;
+        --glow: 0 18px 48px rgba(5, 8, 24, 0.6);
+        --glow-soft: 0 12px 30px rgba(5, 8, 24, 0.4);
+      }
+    }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
-      background: radial-gradient(circle at 22% 18%, rgba(211, 138, 181, 0.12), transparent 32%),
-                  radial-gradient(circle at 80% 12%, rgba(144, 165, 255, 0.16), transparent 30%),
-                  linear-gradient(180deg, #0e1220 0%, #0c101c 40%, #0c0f17 100%);
+      background: radial-gradient(circle at 22% 18%, rgba(211, 138, 181, 0.12), transparent 36%),
+                  radial-gradient(circle at 82% 16%, rgba(143, 168, 255, 0.12), transparent 32%),
+                  linear-gradient(180deg, #f9f7f4 0%, #f2f4f8 38%, #f7f5f2 100%);
       color: var(--ink);
       font-family: "Manrope", "Inter", system-ui, -apple-system, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 28px 22px 64px;
+      padding: 36px 24px 72px;
       gap: 24px;
       background-attachment: fixed;
     }
@@ -88,7 +107,7 @@
       height: 13px;
       border-radius: 10px;
       background: linear-gradient(160deg, #a8c8ff, #f3bfd8 60%, #e6d5ff);
-      box-shadow: 0 0 0 6px rgba(211, 138, 181, 0.24);
+      box-shadow: 0 0 0 6px rgba(211, 138, 181, 0.2);
       position: relative;
     }
 
@@ -108,11 +127,17 @@
       padding: 4px 8px;
       border-radius: 999px;
       border: 1px solid var(--outline);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
       opacity: 0;
       transition: opacity 200ms var(--ease), transform 200ms var(--ease);
       transform: translateY(2px);
       pointer-events: none;
+    }
+
+    .brand:hover .micro-glow,
+    .brand:focus-within .micro-glow {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .brand:hover .micro-glow,
@@ -132,24 +157,30 @@
       padding: 9px 12px;
       border-radius: 12px;
       border: 1px solid transparent;
-      transition: border-color 220ms var(--ease), background-color 220ms var(--ease), color 220ms var(--ease), box-shadow 220ms var(--ease);
+      transition: border-color 200ms var(--ease), background-color 200ms var(--ease), color 200ms var(--ease), box-shadow 200ms var(--ease);
       font-weight: 700;
       position: relative;
+    }
+
+    .primary-nav a {
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 12px;
     }
 
     .primary-nav a:hover,
-    .primary-nav a:focus-visible {
-      border-color: rgba(211, 138, 181, 0.5);
+    .primary-nav a:focus-visible,
+    .secondary-nav a:hover,
+    .secondary-nav a:focus-visible {
+      border-color: rgba(211, 138, 181, 0.4);
       background: rgba(211, 138, 181, 0.12);
       outline: none;
       color: var(--ink);
     }
 
-    .primary-nav a.active {
-      border-color: rgba(211, 138, 181, 0.7);
+    .primary-nav a.active,
+    .secondary-nav a.active {
+      border-color: rgba(211, 138, 181, 0.55);
       background: rgba(211, 138, 181, 0.2);
       color: var(--ink);
       box-shadow: inset 0 -2px 0 rgba(143, 168, 255, 0.6);
@@ -160,19 +191,23 @@
       width: 9px;
       height: 9px;
       border-radius: 999px;
-      border: 2px solid rgba(143, 168, 255, 0.7);
+      border: 2px solid rgba(143, 168, 255, 0.6);
       margin-right: 6px;
-      background: rgba(211, 138, 181, 0.6);
+      background: rgba(211, 138, 181, 0.4);
       transition: transform 220ms var(--ease);
     }
 
-    .primary-nav a.active .nav-indicator { transform: scale(1.05) translateY(-1px); background: rgba(143, 168, 255, 0.8); }
+    .primary-nav a.active .nav-indicator,
+    .secondary-nav a.active .nav-indicator {
+      transform: scale(1.05) translateY(-1px);
+      background: rgba(143, 168, 255, 0.8);
+    }
 
     .status-ribbon {
       height: 4px;
       background: linear-gradient(90deg, rgba(143, 168, 255, 0.9), rgba(211, 138, 181, 0.8), rgba(143, 168, 255, 0.85));
       border-radius: 999px;
-      box-shadow: 0 10px 20px rgba(143, 168, 255, 0.22);
+      box-shadow: 0 10px 20px rgba(143, 168, 255, 0.16);
       max-width: 220px;
       margin-left: auto;
     }
@@ -200,11 +235,12 @@
       animation: drift-in 260ms var(--ease);
     }
 
-    .status-bar {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
+    .rail-heading {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin: 0;
     }
 
     .lead {
@@ -215,13 +251,24 @@
       color: var(--ink);
     }
 
-    .note { font-size: 15px; line-height: 1.8; color: var(--muted); margin: 2px 0 0; }
+    .note {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin: 2px 0 0;
+    }
 
     .micro-presence {
       font-size: 14px;
       color: var(--ink-soft);
       margin: -6px 0 0;
       letter-spacing: 0.01em;
+    }
+
+    .micro-presence em {
+      font-style: normal;
+      color: var(--accent-strong);
+      font-weight: 700;
     }
 
     .micro-presence em { font-style: normal; color: var(--accent-strong); font-weight: 700; }
@@ -231,8 +278,8 @@
       gap: 10px;
       padding: 12px 12px 14px;
       border-radius: 14px;
-      background: rgba(144, 165, 255, 0.08);
-      border: 1px dashed rgba(255, 255, 255, 0.16);
+      background: rgba(143, 168, 255, 0.08);
+      border: 1px dashed rgba(31, 36, 58, 0.18);
       color: var(--muted);
       font-size: 14px;
     }
@@ -245,20 +292,28 @@
 
     .chip {
       border: 1px solid var(--outline);
-      padding: 7px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.86);
       color: var(--ink);
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.01em;
-      transition: border-color 200ms var(--ease), transform 200ms var(--ease), box-shadow 200ms var(--ease), background-color 200ms var(--ease);
+      transition: border-color 180ms var(--ease), transform 180ms var(--ease), box-shadow 180ms var(--ease);
     }
 
     .chip:hover,
-    .chip:focus-visible { border-color: rgba(211, 138, 181, 0.55); transform: translateY(-1px); box-shadow: 0 10px 16px rgba(0, 0, 0, 0.28); outline: none; }
+    .chip:focus-visible {
+      border-color: rgba(211, 138, 181, 0.5);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 16px rgba(0, 0, 0, 0.06);
+      outline: none;
+    }
 
-    .grid-stack { display: grid; gap: 22px; }
+    .grid-stack {
+      display: grid;
+      gap: 22px;
+    }
 
     .section-shell {
       position: relative;
@@ -268,10 +323,7 @@
       padding: 18px 18px 20px;
       box-shadow: var(--glow-soft);
       overflow: hidden;
-      transition: border-color 220ms var(--ease), box-shadow 220ms var(--ease);
     }
-
-    .section-shell.active-section { border-color: rgba(211, 138, 181, 0.6); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42); }
 
     .section-shell::after {
       content: "";
@@ -284,9 +336,21 @@
       opacity: 0.6;
     }
 
-    .section { display: grid; gap: 14px; animation: drift-in 260ms var(--ease) 40ms backwards; }
+    .pinned-section,
+    .reading-section,
+    .notes-section,
+    .contact-section {
+      display: grid;
+      gap: 14px;
+      animation: drift-in 260ms var(--ease) 40ms backwards;
+    }
 
-    .section-header { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
 
     .section-header h2 {
       margin: 0;
@@ -300,8 +364,17 @@
       align-items: center;
     }
 
-    .section-header .eyebrow { font-size: 12px; color: var(--accent-strong); letter-spacing: 0.12em; text-transform: uppercase; }
-    .section-header span { font-size: 13px; color: var(--muted); }
+    .section-header .eyebrow {
+      font-size: 12px;
+      color: var(--accent-strong);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-header span {
+      font-size: 13px;
+      color: var(--muted);
+    }
 
     .filter-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .filter-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
@@ -316,7 +389,7 @@
       padding: 16px 16px 14px;
       box-shadow: var(--glow-soft);
       overflow: hidden;
-      transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), border-color 240ms var(--ease), filter 240ms var(--ease);
+      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease), filter 220ms var(--ease);
     }
 
     .card::before {
@@ -331,7 +404,13 @@
     }
 
     .card:hover,
-    .card:focus-within { transform: translateY(-3px); box-shadow: var(--glow); border-color: rgba(211, 138, 181, 0.45); filter: saturate(1.02); }
+    .card:focus-within {
+      transform: translateY(-3px);
+      box-shadow: var(--glow);
+      border-color: rgba(211, 138, 181, 0.38);
+      filter: saturate(1.02);
+    }
+
     .card:hover::before,
     .card:focus-within::before { opacity: 1; }
 
@@ -359,6 +438,31 @@
       gap: 6px;
     }
 
+    .card h3 button:focus-visible {
+      outline: 2px solid rgba(143, 168, 255, 0.8);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .repo-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      font-size: 13px;
+      color: var(--ink);
+      border-top: 1px solid var(--outline);
+      padding-top: 10px;
+      transition: opacity 160ms var(--ease);
+    }
+
     .card h3 button:focus-visible { outline: 2px solid rgba(143, 168, 255, 0.8); outline-offset: 4px; border-radius: 8px; }
     .card p { margin: 0 0 10px; font-size: 14px; color: var(--muted); line-height: 1.6; }
 
@@ -371,33 +475,67 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 12px;
-      border-radius: 14px;
-      background: rgba(232, 236, 246, 0.08);
-      border: 1px solid rgba(232, 236, 246, 0.32);
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(143, 168, 255, 0.14);
+      border: 1px solid rgba(24, 30, 48, 0.12);
       color: var(--ink);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: border-color 220ms var(--ease), transform 220ms var(--ease), background-color 220ms var(--ease), color 220ms var(--ease), box-shadow 220ms var(--ease);
+      transition: transform 180ms var(--ease), border-radius 180ms var(--ease), border-color 180ms var(--ease);
     }
 
-    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 6px; }
-    .tag:hover,
     .meta-pill:hover,
-    .filter-pill:hover,
-    .tag:focus-visible,
-    .meta-pill:focus-visible,
-    .filter-pill:focus-visible { border-color: rgba(143, 168, 255, 0.85); transform: translateY(-1px); background: rgba(143, 168, 255, 0.18); outline: none; box-shadow: 0 10px 18px rgba(0, 0, 0, 0.3); }
+    .meta-pill:focus-visible {
+      transform: translateY(-1px);
+      border-radius: 10px;
+      border-color: rgba(211, 138, 181, 0.5);
+      outline: none;
+    }
 
-    .pill-active,
-    .filter-pill.active { background: rgba(211, 138, 181, 0.32); border-color: rgba(211, 138, 181, 0.9); color: var(--ink); box-shadow: inset 0 -2px 0 rgba(143, 168, 255, 0.55); }
+    .meta-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(211, 138, 181, 0.25);
+    }
 
-    .meta-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(211, 138, 181, 0.35); }
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 8px 0 6px;
+    }
 
-    .subtext { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.7; }
+    .tag {
+      font-size: 12px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--outline);
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      transition: border-color 160ms var(--ease), transform 160ms var(--ease), background-color 160ms var(--ease);
+    }
 
-    .reading-list { display: grid; gap: 12px; }
+    .tag:hover,
+    .tag:focus-visible {
+      border-color: rgba(143, 168, 255, 0.7);
+      transform: translateY(-1px);
+      background: rgba(143, 168, 255, 0.12);
+      outline: none;
+    }
+
+    .subtext {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .reading-list {
+      display: grid;
+      gap: 12px;
+    }
 
     .reading-item {
       display: grid;
@@ -410,6 +548,64 @@
       transition: border-color 200ms var(--ease), transform 200ms var(--ease), box-shadow 200ms var(--ease);
       position: relative;
       overflow: hidden;
+    }
+
+    .reading-item:hover,
+    .reading-item:focus-within {
+      border-color: rgba(211, 138, 181, 0.4);
+      transform: translateY(-2px);
+      box-shadow: var(--glow);
+    }
+
+    .reading-item::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: -6px;
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle, rgba(143, 168, 255, 0.4), transparent 60%);
+      opacity: 0.6;
+      transform: rotate(10deg);
+    }
+
+    .reading-title {
+      margin: 0;
+      font-size: 16px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .reading-title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(143, 168, 255, 0.4);
+      padding-bottom: 2px;
+      transition: border-color 160ms var(--ease), color 160ms var(--ease);
+    }
+
+    .reading-title a:hover,
+    .reading-title a:focus-visible {
+      border-color: rgba(211, 138, 181, 0.7);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .source {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .status-bar {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
     }
 
     .reading-item:hover,
@@ -440,6 +636,22 @@
     .detail-dialog { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(12, 16, 26, 0.48); backdrop-filter: blur(10px); z-index: 20; padding: 18px; }
     .detail-dialog.active { display: flex; }
 
+    .detail-dialog {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(12, 16, 26, 0.36);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+      padding: 18px;
+    }
+
+    .detail-dialog.active {
+      display: flex;
+    }
+
     .detail-panel {
       background: var(--panel-strong);
       border: 1px solid var(--outline-strong);
@@ -465,31 +677,91 @@
       padding: 8px 12px;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 180ms var(--ease), border-color 180ms var(--ease), background-color 180ms var(--ease);
+      transition: transform 160ms var(--ease), border-color 160ms var(--ease);
     }
 
     .close-btn:hover,
-    .close-btn:focus-visible { transform: translateY(-1px); border-color: rgba(211, 138, 181, 0.6); outline: none; background: rgba(211, 138, 181, 0.12); }
+    .close-btn:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(211, 138, 181, 0.6);
+      outline: none;
+    }
+
+    .detail-title {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      font-family: "Fraunces", "Times New Roman", serif;
+      color: var(--ink);
+    }
+
+    .detail-body {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(143, 168, 255, 0.12);
+      border: 1px solid var(--outline);
+    }
+
+    @keyframes float-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: 1px solid var(--outline);
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 180ms var(--ease), border-color 180ms var(--ease), background-color 180ms var(--ease);
+    }
+
+    @media (max-width: 960px) {
+      body {
+        padding: 26px 16px 48px;
+      }
 
     .detail-title { margin: 0; font-size: 20px; letter-spacing: 0.02em; font-family: "Fraunces", "Times New Roman", serif; color: var(--ink); }
     .detail-body { margin: 0; color: var(--muted); line-height: 1.7; font-size: 15px; }
     .detail-meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--ink); }
     .badge { padding: 6px 10px; border-radius: 10px; background: rgba(143, 168, 255, 0.12); border: 1px solid var(--outline); }
 
-    @keyframes float-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes drift-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      .profile-rail {
+        position: static;
+      }
 
-    @media (max-width: 960px) {
-      body { padding: 22px 16px 46px; }
-      main { grid-template-columns: 1fr; }
-      .profile-rail { position: static; }
-      .section-shell::after { width: 32%; }
-      header { position: sticky; top: 0; }
+      .section-shell::after {
+        width: 32%;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
     }
   </style>
 </head>
@@ -507,6 +779,11 @@
         <a href="#contact"><span class="nav-indicator" aria-hidden="true"></span>Contact</a>
       </nav>
     </div>
+    <nav class="secondary-nav" aria-label="Secondary tabs">
+      <a href="#systems" class="active"><span class="nav-indicator" aria-hidden="true"></span>Systems</a>
+      <a href="#writing"><span class="nav-indicator" aria-hidden="true"></span>Writing</a>
+      <a href="#ledger"><span class="nav-indicator" aria-hidden="true"></span>Ledger</a>
+    </nav>
     <div class="status-ribbon" aria-hidden="true"></div>
   </header>
 
@@ -529,19 +806,18 @@
     </aside>
 
     <section class="grid-stack">
-      <div class="section-shell" id="projects" data-section>
-        <div class="section">
+      <div class="section-shell" id="projects">
+        <div class="pinned-section">
           <div class="section-header">
             <h2><span class="eyebrow">Pinned</span> Entries</h2>
             <span>Tracked like repos; tuned for clarity</span>
           </div>
-          <div class="filter-row" id="project-filters" aria-label="Project filters"></div>
-          <div class="cards" id="projects-grid" aria-live="polite"></div>
+          <div class="cards" id="pinned-cards" aria-live="polite"></div>
         </div>
       </div>
 
-      <div class="section-shell" id="reading" data-section>
-        <div class="section">
+      <div class="section-shell" id="reading">
+        <div class="reading-section">
           <div class="section-header">
             <h2><span class="eyebrow">Borrowed</span> Light</h2>
             <span>Articles sharpening how I think</span>
@@ -550,26 +826,33 @@
         </div>
       </div>
 
-      <div class="section-shell" id="notes" data-section>
-        <div class="section">
+      <div class="section-shell" id="notes">
+        <div class="notes-section">
           <div class="section-header">
             <h2><span class="eyebrow">Notes</span> & Systems</h2>
-            <span>Legible operations, minimal drama</span>
+            <span id="systems">Legible operations, minimal drama</span>
           </div>
-          <div class="filter-row" id="notes-filters" aria-label="Notes filters"></div>
-          <div class="cards" id="notes-grid" aria-live="polite"></div>
+          <p class="subtext">Small essays and runbooks on keeping systems calm under load. If a decision can't be traced, it doesn't ship.</p>
+          <div class="tag-row">
+            <span class="tag">Runbooks</span>
+            <span class="tag">On-call pacing</span>
+            <span class="tag">Service invariants</span>
+            <span class="tag">Human + model pairing</span>
+          </div>
+          <p class="subtext" id="writing">Latest: Incident postmortems that read like teaching notes, not blame scripts.</p>
+          <p class="subtext" id="ledger">Ledger notes: we keep receipts on the fixes, not the fires.</p>
         </div>
       </div>
 
-      <div class="section-shell" id="contact" data-section>
-        <div class="section">
+      <div class="section-shell" id="contact">
+        <div class="contact-section">
           <div class="section-header">
             <h2><span class="eyebrow">Contact</span> / Ledger</h2>
             <span>Signals stay clear even when stakes climb</span>
           </div>
           <p class="subtext">Prefer conversations that start with a constraint and end with a repeatable path. I'll respond with a short plan, not a pitch deck.</p>
           <div class="tag-row">
-            <span class="tag pill-active">DM: @quietauthor</span>
+            <span class="tag">DM: @quietauthor</span>
             <span class="tag">Email: calm@quiet.dev</span>
             <span class="tag">Ledger: gentle nights only</span>
           </div>
@@ -594,116 +877,78 @@
   </footer>
 
   <script>
-    const siteData = {
-      filters: [
-        { key: 'all', label: 'All' },
-        { key: 'systems', label: 'Systems' },
-        { key: 'writing', label: 'Writing' },
-        { key: 'ledger', label: 'Ledger' }
-      ],
-      projects: [
+    const contentConfig = {
+      pinnedEntries: [
         {
-          title: 'Signal Spine',
-          summary: 'A service spine for resilient event routing with graceful degradation and observability baked in.',
-          tags: ['TypeScript', 'Node', 'Observability'],
-          meta: ['Stars · 1.2k', 'Updated · 2w ago'],
-          detail: 'Systematically routes events through guardrails, keeping latency predictable while providing model-assisted rerouting hints when circuits get noisy.',
-          why: 'Built to keep delivery calm when upstreams wobble—humans guide the guardrails, models draft fallback paths.',
-          link: 'https://example.com/signal-spine',
-          tone: 'human + model',
-          category: 'systems'
+          title: "Signal Spine",
+          summary: "A service spine for resilient event routing with graceful degradation and observability baked in.",
+          tags: ["TypeScript", "Node", "Observability"],
+          meta: ["Stars · 1.2k", "Updated · 2w ago"],
+          detail: "Systematically routes events through guardrails, keeping latency predictable while providing model-assisted rerouting hints when circuits get noisy.",
+          link: "https://example.com/signal-spine",
+          tone: "human + model"
         },
         {
-          title: 'Ledger of Calm Fixes',
-          summary: 'Annotated playbook of production incidents with concise remediations and prevention checklists.',
-          tags: ['Playbook', 'Resilience', 'Postmortems'],
-          meta: ['Changelog · v3.1', 'Updated · 5d ago'],
-          detail: 'A living ledger that pairs human intuition with model drafts to document the decision tree so the next responder has a map.',
-          why: 'Because the calm path should be easier to follow than the noisy one—every fix is archived with receipts.',
-          link: 'https://example.com/ledger',
-          tone: 'human + model',
-          category: 'ledger'
+          title: "Ledger of Calm Fixes",
+          summary: "Annotated playbook of production incidents with concise remediations and prevention checklists.",
+          tags: ["Playbook", "Resilience", "Postmortems"],
+          meta: ["Changelog · v3.1", "Updated · 5d ago"],
+          detail: "A living ledger that pairs human intuition with model drafts to draft fixes, then documents the decision tree so the next responder has a map.",
+          link: "https://example.com/ledger",
+          tone: "human + model"
         },
         {
-          title: 'Interface Garden',
-          summary: 'UI patterns for calm dashboards—balanced contrast, accessible spacing, and intentional motion.',
-          tags: ['Design System', 'Accessibility', 'Motion'],
-          meta: ['Tokens · brass / charcoal', 'Updated · 1w ago'],
-          detail: 'A pattern library that biases toward clarity: color tokens tuned for WCAG AA, motion capped at 240ms, and components co-written with lintable guidance.',
-          why: 'Design debt is operations debt—this keeps dashboards steady for humans and models alike.',
-          link: 'https://example.com/interface-garden',
-          tone: 'human + model',
-          category: 'systems'
+          title: "Interface Garden",
+          summary: "UI patterns for calm dashboards—balanced contrast, accessible spacing, and intentional motion.",
+          tags: ["Design System", "Accessibility", "Motion"],
+          meta: ["Tokens · brass / charcoal", "Updated · 1w ago"],
+          detail: "A pattern library that biases toward clarity: color tokens tuned for WCAG AA, motion capped at 240ms, and components co-written with lintable guidance.",
+          link: "https://example.com/interface-garden",
+          tone: "human + model"
         },
         {
-          title: 'Notes on Reliability',
-          summary: 'Short essays on keeping systems legible under load—covering observability, runbooks, and pacing.',
-          tags: ['Notes', 'Reliability', 'Runbooks'],
-          meta: ['Series · 12 entries', 'Updated · yesterday'],
-          detail: 'A note stack on pacing releases, limiting blast radius, and pairing responders with small models for query scaffolding without noise.',
-          why: 'Documented judgment stays calm at 3 a.m.—these notes keep reasoning traceable.',
-          link: 'https://example.com/reliability-notes',
-          tone: 'human + model',
-          category: 'writing'
-        }
-      ],
-      notes: [
-        {
-          title: 'Runbooks that age well',
-          summary: 'How to keep on-call guides crisp, searchable, and model-friendly.',
-          tags: ['Runbooks', 'Models'],
-          category: 'systems',
-          why: 'A calm shift is one where every step is legible and auditable.'
-        },
-        {
-          title: 'Incident pacing > incident heroics',
-          summary: 'Cadence beats adrenaline—why we rehearse instead of improvise.',
-          tags: ['Pacing', 'Reliability'],
-          category: 'ledger',
-          why: 'We prefer gentle nights; tempo guardrails keep it that way.'
-        },
-        {
-          title: 'Writing with models in the loop',
-          summary: 'Human clarity first, model scaffolding second—notes on collaborative drafting.',
-          tags: ['Writing', 'AI'],
-          category: 'writing',
-          why: 'Systems thinking with a pen that can also predict.'
+          title: "Notes on Reliability",
+          summary: "Short essays on keeping systems legible under load—covering observability, runbooks, and pacing.",
+          tags: ["Notes", "Reliability", "Runbooks"],
+          meta: ["Series · 12 entries", "Updated · yesterday"],
+          detail: "A note stack on pacing releases, limiting blast radius, and pairing responders with small models for query scaffolding without noise.",
+          link: "https://example.com/reliability-notes",
+          tone: "human + model"
         }
       ],
       readingList: [
         {
-          title: 'Speed without losing the plot',
-          source: 'Stratechery',
-          link: 'https://example.com/speed',
-          why: 'Reframes pace as an information problem, not just execution—useful when smoothing incident reviews.',
-          tags: ['strategy', 'cadence']
+          title: "Speed without losing the plot",
+          source: "Stratechery",
+          link: "https://example.com/speed",
+          why: "Reframes pace as an information problem, not just an execution problem—useful when smoothing incident reviews.",
+          tags: ["strategy", "cadence"]
         },
         {
-          title: 'Interfaces that apologize',
-          source: 'Aza Raskin',
-          link: 'https://example.com/apology',
-          why: 'Humane tooling acknowledges friction and guides, rather than blames, the operator.',
-          tags: ['ux', 'ethics']
+          title: "Interfaces that apologize",
+          source: "Aza Raskin",
+          link: "https://example.com/apology",
+          why: "Good reminder that humane tooling acknowledges friction and guides, rather than blames, the operator.",
+          tags: ["ux", "ethics"]
         },
         {
-          title: 'The maintenance mindset',
-          source: 'Ribbonfarm',
-          link: 'https://example.com/maintenance',
-          why: 'Centers maintenance as creative work; keeps the ledger of calm fixes purposeful.',
-          tags: ['systems', 'craft']
+          title: "The maintenance mindset",
+          source: "Ribbonfarm",
+          link: "https://example.com/maintenance",
+          why: "Centers maintenance as creative work; helps keep the ledger of calm fixes purposeful.",
+          tags: ["systems", "craft"]
         },
         {
-          title: 'Model-assisted runbooks',
-          source: 'Distill',
-          link: 'https://example.com/runbooks',
-          why: 'Clean framing for pairing humans with models on-call without abdicating judgment.',
-          tags: ['ai', 'operations']
+          title: "Model-assisted runbooks",
+          source: "Distill",
+          link: "https://example.com/runbooks",
+          why: "Clean framing for pairing humans with models on-call without abdicating judgment.",
+          tags: ["ai", "operations"]
         }
       ]
     };
 
-    const projectsGrid = document.getElementById('projects-grid');
-    const notesGrid = document.getElementById('notes-grid');
+    const pinnedContainer = document.getElementById('pinned-cards');
     const readingContainer = document.getElementById('reading-list');
     const dialog = document.querySelector('.detail-dialog');
     const detailTitle = document.getElementById('detail-title');
@@ -711,42 +956,8 @@
     const detailMeta = document.getElementById('detail-meta');
     const closeBtn = document.querySelector('.close-btn');
 
-    const navLinks = document.querySelectorAll('.primary-nav a');
-    const sectionShells = document.querySelectorAll('[data-section]');
-
-    const filterTemplate = (target, onChange, activeKey) => {
-      target.innerHTML = '';
-      const label = document.createElement('span');
-      label.className = 'filter-label';
-      label.textContent = 'Filter by';
-      target.appendChild(label);
-      siteData.filters.forEach(filter => {
-        const pill = document.createElement('button');
-        pill.type = 'button';
-        pill.className = 'filter-pill';
-        pill.textContent = filter.label;
-        if (filter.key === activeKey) pill.classList.add('active');
-        pill.addEventListener('click', () => onChange(filter.key));
-        target.appendChild(pill);
-      });
-    };
-
-    function buildTagRow(tags) {
-      const tagRow = document.createElement('div');
-      tagRow.className = 'tag-row';
-      tags.forEach(tag => {
-        const span = document.createElement('span');
-        span.className = 'tag';
-        span.textContent = tag;
-        tagRow.appendChild(span);
-      });
-      return tagRow;
-    }
-
-    function renderProjects(filterKey = 'all') {
-      projectsGrid.innerHTML = '';
-      const filtered = siteData.projects.filter(project => filterKey === 'all' || project.category === filterKey);
-      filtered.forEach(entry => {
+    function renderPinned() {
+      contentConfig.pinnedEntries.forEach((entry) => {
         const card = document.createElement('article');
         card.className = 'card';
         card.tabIndex = 0;
@@ -759,22 +970,30 @@
         heading.appendChild(titleBtn);
 
         const tone = document.createElement('span');
-        tone.className = 'tag pill-active';
+        tone.className = 'tag';
         tone.textContent = entry.tone;
         heading.appendChild(tone);
 
         const desc = document.createElement('p');
         desc.textContent = entry.summary;
 
-        const tagRow = buildTagRow(entry.tags);
+        const tagRow = document.createElement('div');
+        tagRow.className = 'tag-row';
+        entry.tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'tag';
+          span.textContent = tag;
+          tagRow.appendChild(span);
+        });
 
         const meta = document.createElement('div');
         meta.className = 'repo-meta';
         const typePill = document.createElement('span');
-        typePill.className = 'meta-pill pill-active';
+        typePill.className = 'meta-pill';
         const dot = document.createElement('span');
         dot.className = 'meta-dot';
-        typePill.append(dot, 'Pinned');
+        typePill.appendChild(dot);
+        typePill.append('Pinned');
         meta.appendChild(typePill);
 
         entry.meta.forEach(item => {
@@ -789,38 +1008,12 @@
           if (e.target === titleBtn) return;
           openDetail(entry);
         });
-        projectsGrid.appendChild(card);
-      });
-    }
-
-    function renderNotes(filterKey = 'all') {
-      notesGrid.innerHTML = '';
-      const filtered = siteData.notes.filter(note => filterKey === 'all' || note.category === filterKey);
-      filtered.forEach(note => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.tabIndex = 0;
-
-        const heading = document.createElement('h3');
-        heading.textContent = note.title;
-
-        const summary = document.createElement('p');
-        summary.textContent = note.summary;
-
-        const why = document.createElement('p');
-        why.className = 'subtext';
-        why.textContent = note.why;
-
-        const tags = buildTagRow(note.tags);
-
-        card.append(heading, summary, tags, why);
-        notesGrid.appendChild(card);
+        pinnedContainer.appendChild(card);
       });
     }
 
     function renderReading() {
-      readingContainer.innerHTML = '';
-      siteData.readingList.forEach(item => {
+      contentConfig.readingList.forEach(item => {
         const block = document.createElement('article');
         block.className = 'reading-item';
 
@@ -841,7 +1034,14 @@
         why.className = 'subtext';
         why.textContent = item.why;
 
-        const tags = buildTagRow(item.tags);
+        const tags = document.createElement('div');
+        tags.className = 'tag-row';
+        item.tags.forEach(tag => {
+          const t = document.createElement('span');
+          t.className = 'tag';
+          t.textContent = tag;
+          tags.appendChild(t);
+        });
 
         block.append(title, source, why, tags);
         readingContainer.appendChild(block);
@@ -852,103 +1052,65 @@
       detailTitle.textContent = entry.title;
       detailBody.textContent = entry.detail;
       detailMeta.innerHTML = '';
+      const link = document.createElement('a');
+      link.href = entry.link;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.className = 'badge';
+      link.textContent = 'Open artifact';
+      detailMeta.appendChild(link);
 
-      const why = document.createElement('span');
-      why.className = 'badge';
-      why.textContent = entry.why || 'Reasoned in calm.';
-      detailMeta.appendChild(why);
-
-      if (entry.link) {
-        const link = document.createElement('a');
-        link.href = entry.link;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.className = 'badge';
-        link.textContent = 'Open artifact';
-        detailMeta.appendChild(link);
-      }
-
-      if (entry.tags) {
-        entry.tags.forEach(tag => {
-          const badge = document.createElement('span');
-          badge.className = 'badge';
-          badge.textContent = tag;
-          detailMeta.appendChild(badge);
-        });
-      }
-
+      entry.tags.forEach(tag => {
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.textContent = tag;
+        detailMeta.appendChild(badge);
+      });
       dialog.classList.add('active');
       closeBtn.focus();
     }
 
-    function closeDetail() { dialog.classList.remove('active'); }
-
-    closeBtn.addEventListener('click', closeDetail);
-    dialog.addEventListener('click', (event) => { if (event.target === dialog) closeDetail(); });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && dialog.classList.contains('active')) closeDetail(); });
-
-    function updateActiveNav(activeId) {
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href').replace('#', '');
-        if (href === activeId) {
-          link.classList.add('active');
-          link.setAttribute('aria-current', 'page');
-        } else {
-          link.classList.remove('active');
-          link.removeAttribute('aria-current');
-        }
-      });
-      sectionShells.forEach(section => {
-        if (section.id === activeId) {
-          section.classList.add('active-section');
-        } else {
-          section.classList.remove('active-section');
-        }
-      });
+    function closeDetail() {
+      dialog.classList.remove('active');
     }
 
+    closeBtn.addEventListener('click', closeDetail);
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) closeDetail();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && dialog.classList.contains('active')) {
+        closeDetail();
+      }
+    });
+
+    const navLinks = document.querySelectorAll('.primary-nav a, .secondary-nav a');
+    const sections = ['overview', 'projects', 'reading', 'notes', 'contact', 'systems', 'writing', 'ledger'];
+
     function syncNav() {
-      const yOffset = 140;
-      let activeId = 'overview';
-      ['overview', 'projects', 'reading', 'notes', 'contact'].forEach((id) => {
+      const yOffset = 120;
+      let activeId = sections[0];
+      sections.forEach((id) => {
         const el = document.getElementById(id);
         if (!el) return;
         const top = el.getBoundingClientRect().top;
         if (top - yOffset <= 0) activeId = id;
       });
-      updateActiveNav(activeId);
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        const targetId = link.getAttribute('href').replace('#', '');
-        const target = document.getElementById(targetId);
-        if (!target) return;
-        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-        updateActiveNav(targetId);
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href').replace('#', '');
+        if (href === activeId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
       });
-    });
-
-    function mountFilters() {
-      const projectFilters = document.getElementById('project-filters');
-      const notesFilters = document.getElementById('notes-filters');
-      let projectFilter = 'all';
-      let notesFilter = 'all';
-
-      const handleProjectChange = (key) => { projectFilter = key; renderProjects(projectFilter); filterTemplate(projectFilters, handleProjectChange, projectFilter); };
-      const handleNotesChange = (key) => { notesFilter = key; renderNotes(notesFilter); filterTemplate(notesFilters, handleNotesChange, notesFilter); };
-
-      filterTemplate(projectFilters, handleProjectChange, projectFilter);
-      filterTemplate(notesFilters, handleNotesChange, notesFilter);
-      renderProjects(projectFilter);
-      renderNotes(notesFilter);
     }
 
-    renderReading();
-    mountFilters();
-    syncNav();
     document.addEventListener('scroll', syncNav);
+    renderPinned();
+    renderReading();
+    syncNav();
   </script>
 </body>
 </html>
